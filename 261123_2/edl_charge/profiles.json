@@ -1,0 +1,219 @@
+{
+  "NaClO4_0.01M": {
+    "sample_name": "NaClO4_0.01M",
+    "model": "tf",
+    "window_width_v": 1.6,
+    "margin_v": 0.0,
+    "peak_bound_v": 0.8,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "R": null,
+      "CH": null,
+      "alpha": null,
+      "tau": null,
+      "slow_fraction": null,
+      "tau_ratio": null,
+      "g_frumkin": null,
+      "Gamma": null,
+      "beta": null,
+      "area_m2": 2.0106192982974676e-06,
+      "temp_K": 298.15,
+      "concentration_mol_m3": 10,
+      "eps_r": null
+    },
+    "initial_guess_source": "historical_tf_seed.json",
+    "electrode_gap_m": 0.017,
+    "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+    "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6
+    ],
+    "electrode_window_width_v": 1.6
+  },
+  "NaClO4_0.1M": {
+    "sample_name": "NaClO4_0.1M",
+    "model": "tf",
+    "window_width_v": 1.6,
+    "margin_v": 0.0,
+    "peak_bound_v": 0.8,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "R": null,
+      "CH": null,
+      "alpha": null,
+      "tau": null,
+      "slow_fraction": null,
+      "tau_ratio": null,
+      "g_frumkin": null,
+      "Gamma": null,
+      "beta": null,
+      "area_m2": 2.0106192982974676e-06,
+      "temp_K": 298.15,
+      "concentration_mol_m3": 100,
+      "eps_r": null
+    },
+    "initial_guess_source": "historical_tf_seed.json",
+    "electrode_gap_m": 0.017,
+    "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+    "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6
+    ],
+    "electrode_window_width_v": 1.6
+  },
+  "NaClO4_1M": {
+    "sample_name": "NaClO4_1M",
+    "model": "tf",
+    "window_width_v": 1.6,
+    "margin_v": 0.0,
+    "peak_bound_v": 0.8,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "R": null,
+      "CH": null,
+      "alpha": null,
+      "tau": null,
+      "slow_fraction": null,
+      "tau_ratio": null,
+      "g_frumkin": null,
+      "Gamma": null,
+      "beta": null,
+      "area_m2": 2.0106192982974676e-06,
+      "temp_K": 298.15,
+      "concentration_mol_m3": 1000,
+      "eps_r": null
+    },
+    "initial_guess_source": "historical_tf_seed.json",
+    "electrode_gap_m": 0.017,
+    "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+    "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6
+    ],
+    "electrode_window_width_v": 1.6
+  },
+  "NaClO4_9M": {
+    "sample_name": "NaClO4_9M",
+    "model": "tf",
+    "window_width_v": 1.6,
+    "margin_v": 0.0,
+    "peak_bound_v": 0.8,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "R": null,
+      "CH": null,
+      "alpha": null,
+      "tau": null,
+      "slow_fraction": null,
+      "tau_ratio": null,
+      "g_frumkin": null,
+      "Gamma": null,
+      "beta": null,
+      "area_m2": 2.0106192982974676e-06,
+      "temp_K": 298.15,
+      "concentration_mol_m3": 9000,
+      "eps_r": null
+    },
+    "initial_guess_source": "historical_tf_seed.json",
+    "electrode_gap_m": 0.017,
+    "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature. Nominal concentration only, unverified solution composition.",
+    "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6
+    ],
+    "electrode_window_width_v": 1.6
+  },
+  "LLZO": {
+    "sample_name": "LLZO",
+    "model": "stern_pnp",
+    "window_width_v": 2.4,
+    "margin_v": 0.2,
+    "peak_bound_v": 1.0,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "temp_K": 298.15,
+      "length_m": null,
+      "area_m2": null,
+      "D_m2_s": null,
+      "concentration_mol_m3": null,
+      "eps_r": null,
+      "stern_capacitance_f_m2": null,
+      "site_concentration_mol_m3": null
+    },
+    "initial_guess_source": null,
+    "electrode_gap_m": null,
+    "starting_powder_formula_nominal": "Li6.4La3Zr1.4Ta0.6O12",
+    "manufacturer_reference": {
+      "url": "https://www.msesupplies.com/products/ampcera-llzo-nano-powder-ta-doped-lithium-lanthanum-zirconate-garnet-500nm-2",
+      "sku": "PO0106",
+      "product_form": "nano powder",
+      "theoretical_density_kg_m3": 5500,
+      "nominal_bulk_conductivity_s_m": [
+        0.05,
+        0.1
+      ],
+      "particle_D50_m": [
+        4e-07,
+        6e-07
+      ],
+      "source_scope": "powder listing; not specimen calibration"
+    },
+    "au_coating_each_face_m": 5e-08,
+    "notes": "Conditioned pellet, 50 nm Au on each face. The BioLogic report explicitly records electrode overlap area, pellet thickness and specimen temperature as unmeasured. temp_K is a nominal room-temperature model assumption.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6,
+      2.0
+    ],
+    "voltage_window_source": "User-selected optimization peak limit, 2026-11-23: +1.0 V including overshoot. This is 0.2 V below the approximately +1.2 V measured terminal onset. Frequency sweeps remain at a maximum 2.0 Vpp (-1.0 to +1.0 V)."
+  },
+  "LaF3": {
+    "sample_name": "LaF3",
+    "model": "stern_pnp",
+    "window_width_v": 4.2,
+    "margin_v": 0.1,
+    "peak_bound_v": 2,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "temp_K": 298.15,
+      "length_m": 0.0005,
+      "area_m2": null,
+      "D_m2_s": null,
+      "concentration_mol_m3": null,
+      "eps_r": null,
+      "stern_capacitance_f_m2": null,
+      "site_concentration_mol_m3": null
+    },
+    "initial_guess_source": null,
+    "electrode_gap_m": 0.0005,
+    "notes": "0.5 mm single crystal, 5 nm Cr/50 nm Au contacts. Actual overlap unknown. 4.2 V is a planning width, not verified decomposition onset.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6,
+      3.2,
+      4.0
+    ]
+  }
+}

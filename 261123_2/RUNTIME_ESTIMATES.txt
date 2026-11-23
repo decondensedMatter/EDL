@@ -1,0 +1,191 @@
+RUN-TIME ESTIMATES — 2026-11-23
+
+SIX-SAMPLE MASTER, UPDATED SINGLE-SHOT READOUT
+
+Active-time limit: 120 minutes across all six specimens. The timer includes
+standards hookup/reconnection, reference acquisition, specimen calibration,
+fitting, optimization, settling, acquisition, transfer, writing and processing.
+Only physical specimen changes are excluded. Unfinished work is logged.
+
+Optimized targets include both signs of every listed magnitude. The magnitude
+ceiling includes overshoot. NaClO4 uses 0.1, 0.2, 0.4 and 0.8 V; LLZO adds
+1.0 V; LaF3 uses 0.1, 0.2, 0.4, 0.8, 1.6 and 2.0 V. The corresponding maximum
+bipolar chirp amplitudes are 1.6 Vpp, 2.0 Vpp and 4.0 Vpp, respectively.
+
+ADAPTIVE ACTIVE-TIME FORECAST
+
+  python estimate_session_runtime.py --adaptive
+  python estimate_session_runtime.py --adaptive --amp --json
+  python estimate_session_runtime.py --adaptive --cpu-s-per-pair 10
+
+After shared standards the scheduler allocates time in proportion to each
+remaining specimen's calibration, CPU and acquisition workload. Voltage is now
+the outer loop: calibration and fitting advance with each voltage, followed by
+all selected charging tests and sweep views at that level before higher exposure.
+Chirp voltage is compared by Vpp/2; charging uses final-voltage magnitude and may
+overshoot up to the overall sample limit. The scheduler chooses one dwell scale and initially
+reduces intermediate charging durations uniformly, retaining time endpoints.
+If a selected level cannot finish within its share, higher levels are not started.
+Unused time carries forward to remaining specimens; already saved data survive.
+
+The hold and reset forecasts start at 0.1 and 0.2 s respectively, or at the
+higher measured floor. A quadratic increment grows with (voltage/peak limit)^2.
+At full scale its peak increment is 0.9 s for hold and 1.8 s for reset. Available
+time can scale these increments between 0.1 and 1. The measured floor uses the
+next measured voltage at or above the target and retains any larger floor from
+a lower voltage. Chirp resets also use the observed global settling time.
+Opposite polarities share the more conservative dwell at each magnitude.
+Measured floors and replay requirements can make a group infeasible. Actual
+optimized peaks, replay extensions and compiled durations are checked separately.
+
+Illustrative all-six forecast: four minutes for shared standards, 12 seconds
+per calibration trace (192 specimen traces for the full progressive grid),
+90 seconds for the two polarity fits at EACH charging voltage level, two seconds
+of CPU per signed target/time, two seconds per capture for setup/transfer/saving,
+a 50 ms settling floor and a 20 ms loaded minimum charge time. Progressive fits
+are additional work, so the previous 119.92-minute complete-voltage example no
+longer applies. The updated estimate is 119.64 active minutes, including partial
+calibration/fit work, with 80 of 324 signed jobs and 243 of 297 chirp views:
+
+  Each NaClO4: 17.52 min; 12 signed jobs, 36 chirp views; highest level incomplete.
+  LLZO:        21.35 min; 16 signed jobs, 45 chirp views; highest level incomplete.
+  LaF3:        24.21 min; 16 signed jobs, 54 chirp views; 1.6 V partial, 2 V not reached.
+  Shared standards: 4.00 min.
+
+This is a conservative workload scenario, not a measured completion promise.
+The estimator assumes the selected controls are feasible and peak equals target;
+actual overshoot and replay extensions can change time and coverage. Faster measured calibration
+and fitting may allow more levels. Qualification failures or slow I/O can leave
+more unfinished. The shared 7200-second limit is retained in every case.
+These estimates use one current path and the updated readout per run. The
+amplified path applies a nominal 400 kHz current-bandwidth ceiling. The two
+paths have the same example charge durations because the assumed 20 ms
+sample-loaded floor dominates both instrument floors. The legacy 256-average
+readout has a different acquisition cost (see its section below).
+
+FIXED-DWELL COMPARISON, DIRECT CURRENT PATH
+
+Acquisitions projected from the profiles and the nominal no-amplifier time grid:
+
+Sample                 Charge views    Chirp views   Scan minutes
+Each of four NaClO4         192             45          21.10
+Ta-doped LLZO             240             54          27.10
+LaF3                      288             63          30.46
+All six                   1296            297         141.9780
+
+Scans alone exceed the 120-minute limit by 21.9780 minutes even with the optimistic
+nominal instrument floor (168.75 ns). The default sample tests use millisecond
+edges, so they cannot qualify that nominal lower limit. Independent held-out
+sample voltage records determine the loaded minimum: for each record take the
+largest of its programmed edge duration, ten scope sample intervals and ten
+effective rise times. Multiply the smallest qualifying interval by the number
+of optimization intervals (six by default); hardware timing can raise it further.
+
+For an illustrative qualified minimum charge time of 20 ms on all six specimens,
+the same 1,593 captures require 148.5308 minutes before standards, calibration,
+CPU and extra I/O. Each NaClO4 then takes 22.07 minutes, LLZO 28.32 and
+LaF3 31.92. The 20 ms value is a scenario input;
+the actual minimum must come from measurements for each installed specimen.
+Standards, sample calibration and CPU times have not been measured. The estimate
+uses six charge durations, all signed targets, four captures over three matched
+variants per target/time, and fast/middle/slow native sweep views for every
+shape and Vpp. Each chirp view repeats two complete round trips with one second
+per leg and has driven zero before and after the sweep. These records cover
+parts of separate repetitions; they cannot establish whole-sweep energy.
+
+Timing assumptions: 2 extra seconds per capture for setup/transfer/writing.
+The charge term includes pre-reset, delay to end of view (5% end padding), and a
+full protocol guard after acquisition. For charge target V and positive bound B,
+hold = 0.1 + 0.9*(V/B)^2 s (zero for immediate discharge);
+reset = 0.2 + 1.8*(V/B)^2 s. This scenario assumes realized peak equals target,
+nominal hardware timing before qualification of the loaded sample/fixture, all model checks pass, and measured settling adds no
+extra dwell. Actual coefficients, voltage excursions, quantization, memory depth,
+step response, settling/hold extension and throughput affect the realized run.
+An extra second per capture adds 26.55 minutes for 1,593 captures. At 4 s overhead
+and a 1 s settling floor, scan acquisition alone requires 240.87 minutes.
+
+Reproduce or vary the offline scenario from the package directory:
+  python estimate_session_runtime.py
+  python estimate_session_runtime.py --min-charge-s 0.02
+  python estimate_session_runtime.py --overhead-s 4 --settling-floor-s 1 --json
+The estimator reads each sample's charging magnitude bound and bipolar Vpp list.
+
+STANDALONE FULL-GRID SCENARIOS (SEPARATE ENTRY POINTS)
+
+These are experiment-time scenarios, not measured specimen equilibration times.
+They exclude sample mounting, reconnection, calibration measurements, optimization
+CPU time, unmeasured disk/USB/VISA delays and failed/repeated measurements.
+
+UPDATED READOUT: OPTIMIZED CHARGING TEST SET
+
+Scenario: all candidates pass; hold and zero reset both 1 second; 2 seconds extra
+setup/transfer overhead per acquisition; record charge, hold, and reset/tail views.
+Each view starts a NEW complete protocol. Immediate-discharge has no hold view.
+The estimate includes the implemented initial zero reset and conservative wait
+after the scope completes. No 256-average multiplier is used in this version.
+
+Sample          With current amp       Without current amp
+0.01 M NaClO4    113.0 min               149.2 min
+0.1 M NaClO4     113.0 min               149.2 min
+1 M NaClO4       113.0 min               149.2 min
+9 M NaClO4       113.0 min               149.2 min
+Ta-doped LLZO    141.2 min               186.5 min
+LaF3            169.5 min               223.8 min
+
+Candidate protocols with/without amp: 432/576 for each NaClO4 and 540/720 for LLZO; 648/864 for LaF3. Three variants are included. There are
+18 nominal charge deadlines with amp and 24 without, and 8/10/12 signed final-voltage
+levels depending on the sample cap. Faster deadlines or high-voltage targets
+often fail feasibility; actual accepted-case counts may be much smaller.
+
+Sensitivity to HOLD AND RESET (same duration each), minutes:
+                          0.1 s hold/reset     1 s hold/reset     10 s hold/reset
+                         amp / without       amp / without      amp / without
+All four NaClO4           49.8 / 64.9         113.0 / 149.2      744.8 / 991.6
+LLZO                     62.2 / 81.2         141.2 / 186.5      931.0 / 1239.5
+LaF3                     74.7 / 97.4         169.5 / 223.8     1117.2 / 1487.4
+
+These hold values are examples. The optimizer requires measured settling plus
+model replay; it does not assume that LLZO, LaF3 or every solution settles in 1 s.
+If only the charge view is captured at the 1 s scenario, the corresponding times
+are 35.3/46.5 for each NaClO4, 44.1/58.1 for LLZO, and 52.9/69.7 minutes for LaF3. That shorter run does not provide
+the full hold/discharge-tail observations requested.
+
+CHIRPS — ADD SEPARATELY
+
+At one second per sweep leg, native mode applies 4 seconds per voltage/shape.
+Stimulus-only totals: 1.0 minute per NaClO4 specimen, 1.2 minutes for LLZO and
+1.4 minutes for LaF3 (15, 18 or 21 records). Those are NOT complete bench times.
+
+The full record at 100 MSa/s contains about 401 million points PER CHANNEL.
+Two channels transferred in ASCII can dominate duration. At a purely illustrative
+effective throughput of 10 MiB/s and 16 ASCII bytes per channel sample, native
+chirps alone would take approximately 307, 369 or 430 minutes, respectively,
+including the estimator's 2-second overhead. This is conditional on sufficient
+installed scope memory; otherwise that acquisition is unavailable. Throughput has
+not been measured here. Do not quote the stimulus-only minutes as total run time.
+
+A 4-second stored ARB at 160 MSa/s needs 640M points. It cannot run in either 1M
+standard or 16M optional generator memory. It is listed as infeasible instead of
+assigning a misleading finite runtime. Shorter ARB durations can be explicitly
+selected, but their low-frequency sampling/settling value must be assessed.
+
+WAVEFORM-ONLY / UNCHANGED READOUT VERSION
+
+The original 256 averages, three-period capture and 100-second timeout remain.
+For the default native chirp, even the optimistic trigger-overlap bound exceeds
+the timeout. Long optimized protocols likewise cannot complete. These records are
+reported before output rather than changing the readout behind this version's
+name. A complete default experiment therefore has no valid completion-time
+estimate under the unchanged settings. Use the updated readout for such cases.
+
+RECALCULATE AFTER CALIBRATION
+
+python estimate_edl_runtime.py --hold-s 0.1 1 10 --views charge hold reset
+python estimate_edl_runtime.py --hold-s 1 --views charge hold reset --ascii-throughput-mib-s 10
+python estimate_edl_runtime.py --case-directory cases --views charge hold reset
+python estimate_edl_runtime.py --views charge hold reset --json
+
+--case-directory uses actual validated compiled hold/reset/deadline durations.
+Add --scope-depth with the installed usable depth per channel. The --json flag
+prints machine-readable output; redirect it to a file if desired. The waveform
+compiler, physical model and observed settling determine the final schedule.

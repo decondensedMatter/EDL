@@ -1,0 +1,88 @@
+HOLD AND ZERO-RESET PLAN | VOLTAGE-FIRST | 2026-11-23
+Updated single-shot readout; example without current amplifier.
+
+All six specimens share a 7200-second active budget. Only specimen changes
+pause that clock. Calibration advances with voltage, so no high-voltage
+calibration precedes completed lower-level experiments. Both polarities and
+all selected variants, charging times and sweep views finish at one level
+before the next. Infeasible modeled controls are logged and not applied.
+An unfinished selected group or mandatory sweep stops further escalation.
+
+The current conservative forecast uses 119.64 minutes and leaves some highest
+levels unfinished. It includes four minutes of standards, 12 seconds per
+calibration trace, 90 seconds of fitting per charging voltage level, 2 seconds
+CPU per signed optimization and 2 seconds I/O per capture. Assumed loaded
+minimum charge time is 20 ms and settling floor 50 ms; these are forecasts,
+not substitutes for measurements. See RUNTIME_ESTIMATES.txt for coverage.
+
+DWELL RULE
+For q=(absolute voltage / sample peak cap)^2 and selected scale k:
+  H = max(0.1 s, measured hold floor) + k*0.9 s*q
+  R = max(0.2 s, measured reset floor) + k*1.8 s*q
+Hold uses final magnitude, reset uses actual peak including overshoot.
+Both signs share the larger measured settling floor. The monotone floor
+envelope and replay-required extensions preserve longer dwell at higher
+voltage. k is pinned for the specimen once the duration coverage is selected.
+Previously measured floors cannot shrink when a later stage is calibrated.
+Immediate-discharge variants have H=0 and still include a finite zero reset.
+
+ILLUSTRATIVE NOMINAL VALUES AT k=0.10
+The conservative scenario selects the minimum scale. These values assume
+measured floors below the 0.1/0.2-second base and no replay extension.
+Rows at unreached levels are planned values, not captured measurements.
+
+NaClO4_0.01M
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.101406    0.202813
+           0.2    0.105625    0.211250
+           0.4    0.122500    0.245000
+           0.8    0.190000    0.380000
+
+NaClO4_0.1M
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.101406    0.202813
+           0.2    0.105625    0.211250
+           0.4    0.122500    0.245000
+           0.8    0.190000    0.380000
+
+NaClO4_1M
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.101406    0.202813
+           0.2    0.105625    0.211250
+           0.4    0.122500    0.245000
+           0.8    0.190000    0.380000
+
+NaClO4_9M
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.101406    0.202813
+           0.2    0.105625    0.211250
+           0.4    0.122500    0.245000
+           0.8    0.190000    0.380000
+
+LLZO
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.100900    0.201800
+           0.2    0.103600    0.207200
+           0.4    0.114400    0.228800
+           0.8    0.157600    0.315200
+             1    0.190000    0.380000
+
+LaF3
+  |Vfinal| (V)       H (s)       R (s)
+           0.1    0.100225    0.200450
+           0.2    0.100900    0.201800
+           0.4    0.103600    0.207200
+           0.8    0.114400    0.228800
+           1.6    0.157600    0.315200
+             2    0.190000    0.380000
+
+The 0.05 V peak stage is sweep-only (0.1 Vpp); it still includes calibration
+and reset. Chirp resets use Vpp/2 and the measured settling evidence.
+Charging is ordered by final-voltage magnitude. Optimized overshoot may reach
+the overall sample limit and can increase the reset above the tabulated value.
+Infeasible optimized controls are recorded as rejected and are not applied.
+Actual applied dwell, extensions, omissions and stage status are saved in the
+case files and session journal. Current-amplifier runs calibrate their path
+independently and use the same ordering and budget rules.
+
+Reproduce: python estimate_session_runtime.py --adaptive --json

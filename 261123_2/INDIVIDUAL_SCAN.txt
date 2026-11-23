@@ -1,0 +1,90 @@
+SIX UNATTENDED SAMPLE SCRIPTS — DIRECT CURRENT SENSING / UPDATED READOUT
+
+Download the matching file from standalone_scripts. Each file embeds the shared
+Python source and sample profiles; you do not need the rest of the repository.
+Keep all six together if you want their output in the same data directory.
+
+Example — run 9 M NaClO4 from PowerShell in the downloaded file's directory:
+
+  python NaClO4_9M_without_current_amp_updated_readout.py
+
+The other five filenames are:
+  NaClO4_0p01M_without_current_amp_updated_readout.py
+  NaClO4_0p1M_without_current_amp_updated_readout.py
+  NaClO4_1M_without_current_amp_updated_readout.py
+  LLZO_without_current_amp_updated_readout.py
+  LaF3_without_current_amp_updated_readout.py
+
+No keyboard answers, calibration standards, specimen swaps, reference electrode,
+or temperature monitor are requested. The selected specimen stays connected.
+Run one file at a time. Do not run two scripts against the same instruments.
+
+WHAT THE SCRIPT DOES
+
+Uses nominal 50-ohm direct-current conversion and the existing voltage path.
+Collects driven-zero baselines/noise and progressively larger sample-response
+checks. These are sample-only checks, not external-standard hardware calibration.
+They do not measure unloaded OCV or independently verify gain, delay, bandwidth,
+voltage sharing, or absence of decomposition. All output labels this distinction.
+
+At each ascending voltage level, collects sample calibration data, fits and
+checks the positive and negative response separately, attempts eligible optimized
+charging protocols, and acquires sine/square/triangle frequency-sweep windows.
+Overshoot is bounded by the overall specimen cap. Holds/resets increase with
+voltage and respect measured settling and the active-time limit.
+
+Frequency-sweep data use fast/middle/slow windows on separate complete repetitions.
+This avoids the earlier request for a 401-million-point scope record. These
+windows are not a continuously recorded trace of the whole frequency sweep.
+
+Optimized protocols are applied only when specimen-model validation and waveform
+bounds checks pass. Unsupported/infeasible cases and unfinished work are saved
+with reasons. The LLZO pellet geometry and LaF3 overlap area remain unmeasured in
+the supplied profiles: their raw checks and sweeps can run, but their Stern-PNP
+optimized protocols remain unavailable until those physical inputs are supplied.
+The script does not invent these values or silently substitute another model.
+
+TIME AND OUTPUT
+
+Default active limit: 1,200 seconds (20 minutes) for each specimen, including
+sample checks, computation, settling, transfers, and file saving. Six separate
+runs therefore have a combined active allowance of 120 minutes. Initial Python
+loading/runtime extraction is outside the acquisition timer. A fault or a fully
+completed eligible plan may end a run sooner; full grid coverage is not guaranteed.
+
+The file creates these folders beside itself:
+  data/            raw records, session journal, fit results and waveform cases
+  edl_settings/    automatically created per-specimen settings
+  .edl_runtime/    extracted shared code, identified by its SHA-256 checksum
+
+The final terminal message identifies the session journal. Preserve the entire
+session output directory for later analysis, including raw channel records and
+configuration snapshots. A partial status is not a claim of a complete scan.
+
+SOFTWARE AND CONNECTIONS — ONE-TIME COMPUTER SETUP
+
+Python 3.10+ with NumPy, SciPy, Matplotlib and PyVISA, and an installed VISA backend
+that can access the instruments. Tested numerical versions:
+  numpy==2.2.6 scipy==1.15.3 matplotlib==3.10.8
+
+If necessary, install into the Python environment used to run the script:
+  python -m pip install numpy==2.2.6 scipy==1.15.3 matplotlib==3.10.8 pyvisa
+
+The VISA driver (Keysight IO Libraries or NI-VISA) is installed separately.
+The script never downloads or installs software automatically.
+
+Existing setup: Keysight 33511B MY57301577; Agilent DSA90604A MY50140103.
+CH1 = direct 50-ohm current-sense path; CH2 = existing cell-voltage measurement
+path; CH3 = generator Sync. These defaults assume the documented wiring and
+nominal unity voltage scaling; they cannot determine wiring from software.
+The scripts were checked offline and with mocked acquisitions, not on the bench.
+
+OPTIONAL COMMANDS (NOT NEEDED FOR A NORMAL RUN)
+
+  python NaClO4_9M_without_current_amp_updated_readout.py check
+  python NaClO4_9M_without_current_amp_updated_readout.py --help
+  python NaClO4_9M_without_current_amp_updated_readout.py --budget-seconds 1200
+
+The existing shared sample_scripts entries also start the individual workflow
+with no arguments when the complete 261123 package is present. The separately
+requested legacy waveform-only comparison files retain their original readout.

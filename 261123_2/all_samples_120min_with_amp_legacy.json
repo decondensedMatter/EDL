@@ -1,0 +1,1149 @@
+{
+  "schema_version": 2,
+  "budget_seconds": 7200.0,
+  "use_current_amp": true,
+  "readout_mode": "legacy",
+  "voltage_stage_peak_policy": "sample",
+  "charging_polarities": [
+    "positive",
+    "negative"
+  ],
+  "sample_change_time_excluded": true,
+  "standards": {
+    "use_current_amp": true,
+    "voltage_references": [
+      {
+        "source": null,
+        "value_v": null,
+        "uncertainty_v": null
+      },
+      {
+        "source": null,
+        "value_v": null,
+        "uncertainty_v": null
+      },
+      {
+        "source": null,
+        "value_v": null,
+        "uncertainty_v": null
+      }
+    ],
+    "resistor": {
+      "source": null,
+      "ohm": null
+    },
+    "rc": {
+      "source": null,
+      "ohm": null,
+      "farad": null,
+      "topology": "series"
+    },
+    "holdout_resistor": {
+      "source": null,
+      "ohm": null
+    },
+    "rc_frequencies_hz": [
+      4096.0,
+      16384.0,
+      65536.0,
+      262144.0
+    ],
+    "adc_rails_v": {
+      "CH1": [
+        null,
+        null
+      ],
+      "CH2": [
+        null,
+        null
+      ]
+    },
+    "adc_rails_source": null,
+    "max_reference_error_v": 0.01,
+    "max_relative_error": 0.05,
+    "standard_excitation_v": 0.25,
+    "buffer": {
+      "source": null,
+      "series_resistance_ohm": null,
+      "minimum_input_resistance_ohm": null
+    }
+  },
+  "samples": {
+    "NaClO4_0.01M": {
+      "sample_name": "NaClO4_0.01M",
+      "model": "tf",
+      "profile": {
+        "sample_name": "NaClO4_0.01M",
+        "model": "tf",
+        "window_width_v": 1.6,
+        "margin_v": 0.0,
+        "peak_bound_v": 0.8,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "R": null,
+          "CH": null,
+          "alpha": null,
+          "tau": null,
+          "slow_fraction": null,
+          "tau_ratio": null,
+          "g_frumkin": null,
+          "Gamma": null,
+          "beta": null,
+          "area_m2": 2.0106192982974676e-06,
+          "temp_K": 298.15,
+          "concentration_mol_m3": 10,
+          "eps_r": null
+        },
+        "initial_guess_source": "historical_tf_seed.json",
+        "electrode_gap_m": 0.017,
+        "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+        "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6
+        ],
+        "electrode_window_width_v": 1.6,
+        "initial_guess": {
+          "R": 871.6805056948444,
+          "CH": 0.064769844889445,
+          "alpha": 0.006981273876598029,
+          "tau": 8.107733775877681e-05,
+          "slow_fraction": 0.9799999999999999,
+          "tau_ratio": 121.97806507515996,
+          "g_frumkin": -3.4999999999999996,
+          "Gamma": 1e-05,
+          "beta": 0.5,
+          "area_m2": 2.0106192982974676e-06,
+          "concentration_mol_m3": 10,
+          "temp_K": 298.15,
+          "eps_r": 78.3
+        }
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "R": null,
+        "CH": null,
+        "alpha": null,
+        "tau": null,
+        "slow_fraction": null,
+        "tau_ratio": null,
+        "g_frumkin": null,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "temp_K": 298.15,
+        "concentration_mol_m3": 10,
+        "eps_r": null
+      },
+      "initial_guess": {
+        "R": 871.6805056948444,
+        "CH": 0.064769844889445,
+        "alpha": 0.006981273876598029,
+        "tau": 8.107733775877681e-05,
+        "slow_fraction": 0.979,
+        "tau_ratio": 121.97806507515996,
+        "g_frumkin": -3.49,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "concentration_mol_m3": 10,
+        "temp_K": 298.15,
+        "eps_r": 78.3
+      },
+      "parameter_bounds": {
+        "R": [
+          3.0,
+          300000.0
+        ],
+        "CH": [
+          0.01,
+          1.0
+        ],
+        "alpha": [
+          1e-07,
+          10.0
+        ],
+        "tau": [
+          1e-07,
+          0.02
+        ],
+        "slow_fraction": [
+          0.02,
+          0.98
+        ],
+        "tau_ratio": [
+          1.001,
+          2466.780552107479
+        ],
+        "g_frumkin": [
+          -3.5,
+          20.0
+        ],
+        "eps_r": [
+          1.0,
+          120.0
+        ]
+      },
+      "linear_parameters": [
+        "slow_fraction",
+        "g_frumkin"
+      ],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "TF",
+        "historical_seed": "Historical 0.1 M NaClO4 TF initialization",
+        "seed_sha256": null,
+        "historical_bounds_source": "Historical TF parameter-search bounds",
+        "fixed_conventions": {
+          "Gamma": 1e-05,
+          "beta": 0.5
+        },
+        "transferred_across_concentrations": true,
+        "scope": "Local historical 0.1 M fit initialization. Nominal concentration and area remain specimen-specific.",
+        "bounds_notes": "Historical R, CH, alpha, tau, fraction, and interaction intervals; transfer R range widened 100-fold each way from the source interval. Ratio search uses 0.2 s / historical fast tau as its independent upper limit. Relative permittivity interval [1,120] is an exploratory positive prior.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    },
+    "NaClO4_0.1M": {
+      "sample_name": "NaClO4_0.1M",
+      "model": "tf",
+      "profile": {
+        "sample_name": "NaClO4_0.1M",
+        "model": "tf",
+        "window_width_v": 1.6,
+        "margin_v": 0.0,
+        "peak_bound_v": 0.8,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "R": null,
+          "CH": null,
+          "alpha": null,
+          "tau": null,
+          "slow_fraction": null,
+          "tau_ratio": null,
+          "g_frumkin": null,
+          "Gamma": null,
+          "beta": null,
+          "area_m2": 2.0106192982974676e-06,
+          "temp_K": 298.15,
+          "concentration_mol_m3": 100,
+          "eps_r": null
+        },
+        "initial_guess_source": "historical_tf_seed.json",
+        "electrode_gap_m": 0.017,
+        "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+        "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6
+        ],
+        "electrode_window_width_v": 1.6,
+        "initial_guess": {
+          "R": 871.6805056948444,
+          "CH": 0.064769844889445,
+          "alpha": 0.006981273876598029,
+          "tau": 8.107733775877681e-05,
+          "slow_fraction": 0.9799999999999999,
+          "tau_ratio": 121.97806507515996,
+          "g_frumkin": -3.4999999999999996,
+          "Gamma": 1e-05,
+          "beta": 0.5,
+          "area_m2": 2.0106192982974676e-06,
+          "concentration_mol_m3": 100,
+          "temp_K": 298.15,
+          "eps_r": 78.3
+        }
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "R": null,
+        "CH": null,
+        "alpha": null,
+        "tau": null,
+        "slow_fraction": null,
+        "tau_ratio": null,
+        "g_frumkin": null,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "temp_K": 298.15,
+        "concentration_mol_m3": 100,
+        "eps_r": null
+      },
+      "initial_guess": {
+        "R": 871.6805056948444,
+        "CH": 0.064769844889445,
+        "alpha": 0.006981273876598029,
+        "tau": 8.107733775877681e-05,
+        "slow_fraction": 0.979,
+        "tau_ratio": 121.97806507515996,
+        "g_frumkin": -3.49,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "concentration_mol_m3": 100,
+        "temp_K": 298.15,
+        "eps_r": 78.3
+      },
+      "parameter_bounds": {
+        "R": [
+          300.0,
+          3000.0
+        ],
+        "CH": [
+          0.01,
+          1.0
+        ],
+        "alpha": [
+          1e-07,
+          10.0
+        ],
+        "tau": [
+          1e-07,
+          0.02
+        ],
+        "slow_fraction": [
+          0.02,
+          0.98
+        ],
+        "tau_ratio": [
+          1.001,
+          2466.780552107479
+        ],
+        "g_frumkin": [
+          -3.5,
+          20.0
+        ],
+        "eps_r": [
+          1.0,
+          120.0
+        ]
+      },
+      "linear_parameters": [
+        "slow_fraction",
+        "g_frumkin"
+      ],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "TF",
+        "historical_seed": "Historical 0.1 M NaClO4 TF initialization",
+        "seed_sha256": null,
+        "historical_bounds_source": "Historical TF parameter-search bounds",
+        "fixed_conventions": {
+          "Gamma": 1e-05,
+          "beta": 0.5
+        },
+        "transferred_across_concentrations": false,
+        "scope": "Local historical 0.1 M fit initialization. Nominal concentration and area remain specimen-specific.",
+        "bounds_notes": "Historical R, CH, alpha, tau, fraction, and interaction intervals; transfer R range widened 100-fold each way from the source interval. Ratio search uses 0.2 s / historical fast tau as its independent upper limit. Relative permittivity interval [1,120] is an exploratory positive prior.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    },
+    "NaClO4_1M": {
+      "sample_name": "NaClO4_1M",
+      "model": "tf",
+      "profile": {
+        "sample_name": "NaClO4_1M",
+        "model": "tf",
+        "window_width_v": 1.6,
+        "margin_v": 0.0,
+        "peak_bound_v": 0.8,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "R": null,
+          "CH": null,
+          "alpha": null,
+          "tau": null,
+          "slow_fraction": null,
+          "tau_ratio": null,
+          "g_frumkin": null,
+          "Gamma": null,
+          "beta": null,
+          "area_m2": 2.0106192982974676e-06,
+          "temp_K": 298.15,
+          "concentration_mol_m3": 1000,
+          "eps_r": null
+        },
+        "initial_guess_source": "historical_tf_seed.json",
+        "electrode_gap_m": 0.017,
+        "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature.",
+        "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6
+        ],
+        "electrode_window_width_v": 1.6,
+        "initial_guess": {
+          "R": 871.6805056948444,
+          "CH": 0.064769844889445,
+          "alpha": 0.006981273876598029,
+          "tau": 8.107733775877681e-05,
+          "slow_fraction": 0.9799999999999999,
+          "tau_ratio": 121.97806507515996,
+          "g_frumkin": -3.4999999999999996,
+          "Gamma": 1e-05,
+          "beta": 0.5,
+          "area_m2": 2.0106192982974676e-06,
+          "concentration_mol_m3": 1000,
+          "temp_K": 298.15,
+          "eps_r": 78.3
+        }
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "R": null,
+        "CH": null,
+        "alpha": null,
+        "tau": null,
+        "slow_fraction": null,
+        "tau_ratio": null,
+        "g_frumkin": null,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "temp_K": 298.15,
+        "concentration_mol_m3": 1000,
+        "eps_r": null
+      },
+      "initial_guess": {
+        "R": 871.6805056948444,
+        "CH": 0.064769844889445,
+        "alpha": 0.006981273876598029,
+        "tau": 8.107733775877681e-05,
+        "slow_fraction": 0.979,
+        "tau_ratio": 121.97806507515996,
+        "g_frumkin": -3.49,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "concentration_mol_m3": 1000,
+        "temp_K": 298.15,
+        "eps_r": 78.3
+      },
+      "parameter_bounds": {
+        "R": [
+          3.0,
+          300000.0
+        ],
+        "CH": [
+          0.01,
+          1.0
+        ],
+        "alpha": [
+          1e-07,
+          10.0
+        ],
+        "tau": [
+          1e-07,
+          0.02
+        ],
+        "slow_fraction": [
+          0.02,
+          0.98
+        ],
+        "tau_ratio": [
+          1.001,
+          2466.780552107479
+        ],
+        "g_frumkin": [
+          -3.5,
+          20.0
+        ],
+        "eps_r": [
+          1.0,
+          120.0
+        ]
+      },
+      "linear_parameters": [
+        "slow_fraction",
+        "g_frumkin"
+      ],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "TF",
+        "historical_seed": "Historical 0.1 M NaClO4 TF initialization",
+        "seed_sha256": null,
+        "historical_bounds_source": "Historical TF parameter-search bounds",
+        "fixed_conventions": {
+          "Gamma": 1e-05,
+          "beta": 0.5
+        },
+        "transferred_across_concentrations": true,
+        "scope": "Local historical 0.1 M fit initialization. Nominal concentration and area remain specimen-specific.",
+        "bounds_notes": "Historical R, CH, alpha, tau, fraction, and interaction intervals; transfer R range widened 100-fold each way from the source interval. Ratio search uses 0.2 s / historical fast tau as its independent upper limit. Relative permittivity interval [1,120] is an exploratory positive prior.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    },
+    "NaClO4_9M": {
+      "sample_name": "NaClO4_9M",
+      "model": "tf",
+      "profile": {
+        "sample_name": "NaClO4_9M",
+        "model": "tf",
+        "window_width_v": 1.6,
+        "margin_v": 0.0,
+        "peak_bound_v": 0.8,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "R": null,
+          "CH": null,
+          "alpha": null,
+          "tau": null,
+          "slow_fraction": null,
+          "tau_ratio": null,
+          "g_frumkin": null,
+          "Gamma": null,
+          "beta": null,
+          "area_m2": 2.0106192982974676e-06,
+          "temp_K": 298.15,
+          "concentration_mol_m3": 9000,
+          "eps_r": null
+        },
+        "initial_guess_source": "historical_tf_seed.json",
+        "electrode_gap_m": 0.017,
+        "notes": "Two 1.6 mm diameter Au faces, 17 mm apart. Nominal room temperature, no monitored temperature. Nominal concentration only, unverified solution composition.",
+        "voltage_window_source": "User-selected cell-voltage limits, 2026-11-23: frequency sweeps -0.8 to +0.8 V (1.6 Vpp); optimized charging starts at 0 V and all final voltages and overshoot peaks are limited to +0.8 V. No additional margin. Electrochemical stability is unverified.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6
+        ],
+        "electrode_window_width_v": 1.6,
+        "initial_guess": {
+          "R": 871.6805056948444,
+          "CH": 0.064769844889445,
+          "alpha": 0.006981273876598029,
+          "tau": 8.107733775877681e-05,
+          "slow_fraction": 0.9799999999999999,
+          "tau_ratio": 121.97806507515996,
+          "g_frumkin": -3.4999999999999996,
+          "Gamma": 1e-05,
+          "beta": 0.5,
+          "area_m2": 2.0106192982974676e-06,
+          "concentration_mol_m3": 9000,
+          "temp_K": 298.15,
+          "eps_r": null
+        }
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "R": null,
+        "CH": null,
+        "alpha": null,
+        "tau": null,
+        "slow_fraction": null,
+        "tau_ratio": null,
+        "g_frumkin": null,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "temp_K": 298.15,
+        "concentration_mol_m3": 9000,
+        "eps_r": null
+      },
+      "initial_guess": {
+        "R": 871.6805056948444,
+        "CH": 0.064769844889445,
+        "alpha": 0.006981273876598029,
+        "tau": 8.107733775877681e-05,
+        "slow_fraction": 0.979,
+        "tau_ratio": 121.97806507515996,
+        "g_frumkin": -3.49,
+        "Gamma": 1e-05,
+        "beta": 0.5,
+        "area_m2": 2.0106192982974676e-06,
+        "concentration_mol_m3": 9000,
+        "temp_K": 298.15,
+        "eps_r": 78.3
+      },
+      "parameter_bounds": {
+        "R": [
+          3.0,
+          300000.0
+        ],
+        "CH": [
+          0.01,
+          1.0
+        ],
+        "alpha": [
+          1e-07,
+          10.0
+        ],
+        "tau": [
+          1e-07,
+          0.02
+        ],
+        "slow_fraction": [
+          0.02,
+          0.98
+        ],
+        "tau_ratio": [
+          1.001,
+          2466.780552107479
+        ],
+        "g_frumkin": [
+          -3.5,
+          20.0
+        ],
+        "eps_r": [
+          1.0,
+          120.0
+        ]
+      },
+      "linear_parameters": [
+        "slow_fraction",
+        "g_frumkin"
+      ],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "TF",
+        "historical_seed": "Historical 0.1 M NaClO4 TF initialization",
+        "seed_sha256": null,
+        "historical_bounds_source": "Historical TF parameter-search bounds",
+        "fixed_conventions": {
+          "Gamma": 1e-05,
+          "beta": 0.5
+        },
+        "transferred_across_concentrations": true,
+        "scope": "Local historical 0.1 M fit initialization. Nominal concentration and area remain specimen-specific.",
+        "bounds_notes": "Historical R, CH, alpha, tau, fraction, and interaction intervals; transfer R range widened 100-fold each way from the source interval. Ratio search uses 0.2 s / historical fast tau as its independent upper limit. Relative permittivity interval [1,120] is an exploratory positive prior.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    },
+    "LLZO": {
+      "sample_name": "LLZO",
+      "model": "stern_pnp",
+      "profile": {
+        "sample_name": "LLZO",
+        "model": "stern_pnp",
+        "window_width_v": 2.4,
+        "margin_v": 0.2,
+        "peak_bound_v": 1.0,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "temp_K": 298.15,
+          "length_m": null,
+          "area_m2": null,
+          "D_m2_s": null,
+          "concentration_mol_m3": null,
+          "eps_r": null,
+          "stern_capacitance_f_m2": null,
+          "site_concentration_mol_m3": null
+        },
+        "initial_guess_source": null,
+        "electrode_gap_m": null,
+        "starting_powder_formula_nominal": "Li6.4La3Zr1.4Ta0.6O12",
+        "manufacturer_reference": {
+          "url": "https://www.msesupplies.com/products/ampcera-llzo-nano-powder-ta-doped-lithium-lanthanum-zirconate-garnet-500nm-2",
+          "sku": "PO0106",
+          "product_form": "nano powder",
+          "theoretical_density_kg_m3": 5500,
+          "nominal_bulk_conductivity_s_m": [
+            0.05,
+            0.1
+          ],
+          "particle_D50_m": [
+            4e-07,
+            6e-07
+          ],
+          "source_scope": "powder listing; not specimen calibration"
+        },
+        "au_coating_each_face_m": 5e-08,
+        "notes": "Conditioned pellet, 50 nm Au on each face. The BioLogic report explicitly records electrode overlap area, pellet thickness and specimen temperature as unmeasured. temp_K is a nominal room-temperature model assumption.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6,
+          2.0
+        ],
+        "voltage_window_source": "User-selected optimization peak limit, 2026-11-23: +1.0 V including overshoot. This is 0.2 V below the approximately +1.2 V measured terminal onset. Frequency sweeps remain at a maximum 2.0 Vpp (-1.0 to +1.0 V).",
+        "initial_guess": {}
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "temp_K": 298.15,
+        "length_m": null,
+        "area_m2": null,
+        "D_m2_s": null,
+        "concentration_mol_m3": null,
+        "eps_r": null,
+        "stern_capacitance_f_m2": null,
+        "site_concentration_mol_m3": null
+      },
+      "initial_guess": {
+        "D_m2_s": 1e-11,
+        "concentration_mol_m3": 1.0,
+        "eps_r": 30.0,
+        "stern_capacitance_f_m2": 0.08
+      },
+      "parameter_bounds": {
+        "D_m2_s": [
+          1e-20,
+          1e-08
+        ],
+        "concentration_mol_m3": [
+          0.0001,
+          100000.0
+        ],
+        "eps_r": [
+          1.0,
+          300.0
+        ],
+        "stern_capacitance_f_m2": [
+          0.0008,
+          8.0
+        ]
+      },
+      "linear_parameters": [],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "blocking Stern-PNP",
+        "seed_source": "edl_charge/test_stern_pnp.py: synthetic P",
+        "scope": "Numerical seeds from a synthetic solver test, used for both solids. No specimen material constants or geometry inferred.",
+        "bounds_notes": "Exploratory positive log-space searches around test seeds. Site concentration left unspecified selects the dilute closure unless an independently supported site density is supplied.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    },
+    "LaF3": {
+      "sample_name": "LaF3",
+      "model": "stern_pnp",
+      "profile": {
+        "sample_name": "LaF3",
+        "model": "stern_pnp",
+        "window_width_v": 4.2,
+        "margin_v": 0.1,
+        "peak_bound_v": 2,
+        "calibration_status": "unverified",
+        "model_parameters": {
+          "temp_K": 298.15,
+          "length_m": 0.0005,
+          "area_m2": null,
+          "D_m2_s": null,
+          "concentration_mol_m3": null,
+          "eps_r": null,
+          "stern_capacitance_f_m2": null,
+          "site_concentration_mol_m3": null
+        },
+        "initial_guess_source": null,
+        "electrode_gap_m": 0.0005,
+        "notes": "0.5 mm single crystal, 5 nm Cr/50 nm Au contacts. Actual overlap unknown. 4.2 V is a planning width, not verified decomposition onset.",
+        "chirp_vpp_levels": [
+          0.1,
+          0.2,
+          0.4,
+          0.8,
+          1.6,
+          3.2,
+          4.0
+        ],
+        "initial_guess": {}
+      },
+      "hardware": {
+        "use_current_amp": true,
+        "scope_model": "DSA90604A",
+        "scope_serial": "MY50140103",
+        "generator_model": "33511B",
+        "generator_serial": "MY57301577",
+        "scope_bandwidth_hz": 6000000000.0,
+        "scope_max_sample_rate_hz": 20000000000.0,
+        "generator_sample_rate_hz": 160000000.0,
+        "current_channel": "CHAN1",
+        "current_coupling": "DC",
+        "current_termination_ohm": 50.0,
+        "current_gain_a_per_v": 0.002,
+        "current_gain_source": "historical script, verify with resistor",
+        "voltage_scale_factor": 1.0,
+        "voltage_scale_source": "illustrative unity until voltage-path calibration",
+        "data_hardware_calibrated": false,
+        "bandwidth_hz": 400000.0,
+        "generator_rise_time_s": 1.6826923076923076e-08,
+        "min_charge_time_s": 8.75e-06,
+        "ch1_input": "DC50",
+        "current_bandwidth_hz": 400000.0,
+        "current_sign": 1,
+        "ch1_scale_v_per_div": 0.1,
+        "ch2_scale_v_per_div": 0.2,
+        "voltage_gain": 1.0,
+        "voltage_offset_v": 0.0,
+        "current_offset_v": 0.0,
+        "voltage_measurement_location": "across the two cell electrodes",
+        "first_order_independently_qualified": false,
+        "measured_step_rise_s": null,
+        "current_response_rise_s": null,
+        "current_delay_s": null,
+        "calibration_evidence": null
+      },
+      "model_parameters": {
+        "temp_K": 298.15,
+        "length_m": 0.0005,
+        "area_m2": null,
+        "D_m2_s": null,
+        "concentration_mol_m3": null,
+        "eps_r": null,
+        "stern_capacitance_f_m2": null,
+        "site_concentration_mol_m3": null
+      },
+      "initial_guess": {
+        "D_m2_s": 1e-11,
+        "concentration_mol_m3": 1.0,
+        "eps_r": 30.0,
+        "stern_capacitance_f_m2": 0.08
+      },
+      "parameter_bounds": {
+        "D_m2_s": [
+          1e-20,
+          1e-08
+        ],
+        "concentration_mol_m3": [
+          0.0001,
+          100000.0
+        ],
+        "eps_r": [
+          1.0,
+          300.0
+        ],
+        "stern_capacitance_f_m2": [
+          0.0008,
+          8.0
+        ]
+      },
+      "linear_parameters": [],
+      "model_calibrated": false,
+      "fit_report": null,
+      "calibration_id": null,
+      "qualification": {
+        "max_validation_noise_rmse": 3.0,
+        "max_condition_number": 1000000.0,
+        "max_sample_voltage_error_fraction": 0.02
+      },
+      "observed_settling_s": null,
+      "reset_tolerance": 0.01,
+      "max_hold_s": 60.0,
+      "charge_tolerance": 0.01,
+      "voltage_tolerance": 0.005,
+      "max_points": 1000000,
+      "optimization_knots": 7,
+      "starts": 3,
+      "maxiter": 50,
+      "capture_points": 2000,
+      "fit_initialization": {
+        "model": "blocking Stern-PNP",
+        "seed_source": "edl_charge/test_stern_pnp.py: synthetic P",
+        "scope": "Numerical seeds from a synthetic solver test, used for both solids. No specimen material constants or geometry inferred.",
+        "bounds_notes": "Exploratory positive log-space searches around test seeds. Site concentration left unspecified selects the dilute closure unless an independently supported site density is supplied.",
+        "defaults_selected": true,
+        "status": "unverified_initialization",
+        "requires_independent_validation": true
+      }
+    }
+  },
+  "hardware_settings": {
+    "ch2_scale_v_per_div": 1.0
+  },
+  "sample_calibration": {
+    "initial_hold_s": 0.1,
+    "max_hold_s": 8.0,
+    "edge_s": 0.002,
+    "capture_points": 2000,
+    "small_signal_frequencies_hz": [
+      16.0
+    ],
+    "max_abs_ocv_v": 0.005
+  },
+  "timing_policy": {
+    "hold_min_s": 0.1,
+    "hold_target_s": 1.0,
+    "reset_min_s": 0.2,
+    "reset_target_s": 2.0,
+    "minimum_scale": 0.1,
+    "maximum_scale": 1.0,
+    "io_s_per_capture": 2.0,
+    "cpu_s_per_pair": 2.0,
+    "shutdown_reserve_s": 5.0
+  },
+  "shared_calibration_max_s": 900.0,
+  "fit_max_s": 120.0,
+  "optimize_pair_max_s": 30.0,
+  "chirp_fraction_of_sample_time": 0.4,
+  "chirp_leg_s": 1.0,
+  "hardware_current_limit_a": null,
+  "policy": "All six samples share one active-time budget. Voltage caps only; no CV current-density cutoff."
+}

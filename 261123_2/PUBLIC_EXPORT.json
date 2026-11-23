@@ -1,0 +1,27 @@
+{
+  "removed_field_counts": {
+    "geometry_source": 48,
+    "study_report": 8,
+    "study_thread_id": 8
+  },
+  "replaced_provenance_field_counts": {
+    "historical_seed": 28,
+    "seed_sha256": 28,
+    "historical_bounds_source": 28,
+    "source": 1,
+    "source_sha256": 1,
+    "source_conditions": 1
+  },
+  "numeric_initialization_parameters_unchanged": true,
+  "python_files_with_provenance_only_changes": [
+    "edl_charge/model_defaults.py",
+    "edl_charge/tf_model.py"
+  ],
+  "readme_internal_provenance_replaced": true,
+  "previous_source_archive_sha256": "9d561dfe46d1be4365e2ad6bcafd66f5261198f604c4c66df1708b46da61b29c",
+  "revision": "261123_2",
+  "purpose": "Six unattended sample-only direct-readout scripts",
+  "prior_public_release": "261123",
+  "new_sources_reviewed": true,
+  "embedded_runtime_contains_only_published_sources": true
+}
