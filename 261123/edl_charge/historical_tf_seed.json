@@ -1,0 +1,21 @@
+{
+  "source": "Historical 0.1 M NaClO4 TF initialization",
+  "source_sha256": null,
+  "source_conditions": "0.1 M NaClO4, two identical gold electrodes",
+  "calibrated_on_new_cell": false,
+  "parameters": {
+    "R": 871.6805056948444,
+    "CH": 0.064769844889445,
+    "alpha": 0.006981273876598029,
+    "tau": 8.107733775877681e-05,
+    "slow_fraction": 0.9799999999999999,
+    "tau_ratio": 121.97806507515996,
+    "g_frumkin": -3.4999999999999996,
+    "Gamma": 1e-05,
+    "beta": 0.5,
+    "area_m2": 2.0106192982974676e-06,
+    "concentration_mol_m3": 100,
+    "temp_K": 298.15,
+    "eps_r": 78.3
+  }
+}

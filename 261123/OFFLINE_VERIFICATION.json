@@ -1,0 +1,11 @@
+{
+  "offline_tests_passed": 99,
+  "elapsed_s": 65.25,
+  "python": "3.10.9",
+  "hardware_operated": false,
+  "original_source_hashes_verified": {
+    "Agilent_infiniium_BTO_regular_waveform_scan_separate_triggered.py": "c1162d8b3ebf63318ea9b9f1da45d324b11b710c41e419951ef6d4402a82633e",
+    "Agilent_infiniium_BTO_PUND_scan_separate_triggered_volt_amp.py": "6cf883942b3aa14f3e1c9a36cc34fe1806e5dee5480719d74658227659163d71"
+  },
+  "scope": "Numerical, file-generation and mocked acquisition tests; no bench validation"
+}

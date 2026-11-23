@@ -1,0 +1,154 @@
+ENVIRONMENT CLARIFICATION — EDL SCRIPTS — 2026-11-23
+
+SOFTWARE
+
+Developed/tested on Windows with Python 3.10.9 at
+C:\ProgramData\Miniconda3\python.exe
+Numerical packages actually used: NumPy 2.2.6, SciPy 1.15.3, Matplotlib 3.10.8.
+The shell's default python is C:\Python314\python.exe; it is a DIFFERENT environment.
+Use the explicit tested interpreter or a separate compatible environment.
+
+requirements.txt pins the tested numerical libraries and lists PyVISA. Offline
+planning/model fitting/optimization/tests need the numerical packages. Real
+acquisition additionally needs PyVISA and a working VISA backend with USBTMC
+support, normally Keysight IO Libraries or NI-VISA. PyVISA is NOT installed in
+the tested Miniconda environment, and a hardware VISA backend was not verified.
+No package, driver or application was installed during this task.
+
+Example setup commands for the eventual bench computer (not executed here):
+  py -3.10 -m venv .venv
+  .venv\Scripts\python -m pip install -r requirements.txt
+  .venv\Scripts\python -m pyvisa info
+
+Driver installation is separate from pip. Verify the actual instruments appear
+in the VISA resource list before acquisition; do not substitute a simulator for
+hardware and call it a measurement. Files/modules use Python 3.10+ syntax.
+
+Offline test command, run from the package directory:
+  python -B -m unittest discover -s . -p "test_*.py" -v
+
+No GPU, Internet connection, reference-electrode interface or temperature-monitor
+software is needed for running the offline calculations. Live runs need local
+instrument access. Full waveform optimization can take substantially longer than
+the eventual stimulus because it solves repeated nonlinear transient problems.
+
+ALL-SIX SESSION MASTER
+
+run_all_samples.py coordinates four six-specimen campaign alternatives: with or
+without the current amplifier, and updated or unchanged readout. All 24 sample
+entries expose this route using --campaign-six. run_all_samples_without_amp.py
+and run_all_samples_with_amp.py bind the respective updated-readout alternatives.
+The 120-minute active limit covers standard hookup, all calibration, computation,
+settling, capture, data transfer and saving. Only specimen changes pause it.
+Its sweep acquisition uses the native generator mode and three trigger-relative
+windows on separate repetitions. Standalone sweeps support native and stored
+ARB modes subject to configured generator memory and scope record depth.
+
+Supply actual reference source identities and bipolar reference voltages,
+resistor/series-RC and independent holdout standards, verified high-impedance
+OCV buffer and CH2 measurement location, ADC rails for CH1 and CH2, calibrated
+geometry where required. The scripts supply documented analysis acceptance
+defaults and unverified fitting initializations; each sign must independently
+pass measured validation before its optimized waveforms can run.
+Blank fields in the template require bench values. No CV current-density
+threshold or assumed calibrated chain is supplied. The 120-minute controller
+records skipped and unfinished work when qualification or available time prevents
+collection. Use estimate_session_runtime.py for the offline scan-time scenario.
+The unchanged-readout campaign is rejected before instrument access: retained
+256 averages, the 100-second timeout and CH3-triggered passive-record limitations
+cannot support this integrated protocol. Explicit --legacy-manual retains the
+historical standalone behavior outside the 120-minute campaign contract.
+
+Voltage is the outer loop within each specimen. Calibration advances cumulatively
+with the voltage, and two polarity-specific parameter sets are refitted at each
+charging level. Optimized overshoot may reach the overall sample peak limit while
+the outer loop advances by final-voltage magnitude. An
+incomplete selected level stops further voltage escalation for that specimen.
+Analysis manifests preserve both signs, raw channel records,
+training/validation roles, actual hold/reset and immutable fit configurations.
+The voltage-dependent dwell curve is selected after calibration and pinned for
+the specimen. Matched opposite signs use the same measured conservative floor;
+replay-required extensions are logged. See HOLD_RESET_PLAN.txt for a numerical
+forecast and RUNTIME_ESTIMATES.txt for the shared active-time accounting.
+
+PHYSICAL SETUP
+
+Generator: Keysight 33511B, serial MY57301577
+  USB0::0x0957::0x2707::MY57301577::INSTR
+  160 MSa/s ARB clock, 1M default waveform memory; do not assume the 16M option.
+  STEP reconstruction filter for optimized controls. Pulse rise specs differ.
+Scope: Agilent Infiniium DSA90604A, serial MY50140103
+  USB0::0x0957::0x9005::MY50140103::INSTR
+  6 GHz nominal analog bandwidth, up to 20 GSa/s, fixed DC-coupled 50-ohm inputs.
+  Available record depth/options and achieved multi-channel sample rate must be
+  checked on the actual unit; model/serial alone do not prove installed memory.
+
+CH1: current sensing. With amplifier: user-specified 400 kHz bandwidth; historical
+  net conversion 0.002 A/V (the original 1e-3 A/V times its factor of two) is only
+  a starting value. Amplifier model, gain, output loading and delay still require
+  calibration. Without amplifier: nominal 1/50=0.02 A/V using the 50-ohm sense path.
+  Its voltage burden is part of the circuit and must not be mistaken for cell
+  voltage. Never parallel-ground a differential cell through an unintended path.
+CH2: actual voltage ACROSS THE TWO CELL ELECTRODES, through the existing qualified
+  voltage measurement chain. Calibrate gain, offset, delay and bandwidth with the
+  scope's 50-ohm load. Unity scaling in initial configs is explicitly unverified.
+CH3: generator Sync/marker, rising-edge timing reference. It is not a reference
+  electrode or a temperature channel. No CH4 temperature/reference acquisition.
+
+The old PUND '_volt_amp' file assumes an inverting X-20 VOLTAGE amplifier and a
+40x monitor conversion. It is not the definition of 'with current amplifier'.
+The new sample scripts use the regular two-channel current/voltage setup; do not
+reuse X-20 scaling unless that voltage chain is actually present and calibrated.
+
+The generator's high-impedance programmed-voltage convention and voltage_gain
+must match the loaded cell circuit. First-order command/current response models
+are approximations that require independent qualification, including the selected
+ARB sample rate/filter. A 10x timing margin does not certify all instrument/cell
+effects or guarantee absence of physical ringing. Recorded bounds checks cover
+only the observed time window. No hardware interlock is implemented by this code.
+
+SPECIMEN CONDITIONS
+
+All samples: two electrodes only; nominal room temperature 298.15 K in the model,
+not a measured temperature trace. Zero volts is the assumed symmetric-cell OCV;
+verify it independently with a sufficiently high-impedance measurement path.
+
+NaClO4: two 1.6 mm diameter exposed Au faces, 17 mm apart, from the prior Nitha
+setup notes. Area of each face = 2.010619298e-6 m^2. Nominal concentrations in
+mol/m^3 are 10, 100, 1000, 9000. The nominal 9 M composition and dielectric
+properties are not independently verified. Fit each specimen independently.
+For all four concentrations the user selected a maximum 1.6 Vpp frequency sweep,
+which spans -0.8 to +0.8 V about zero across the two electrodes. Both positive and
+negative optimization targets use magnitudes 0.1, 0.2, 0.4 and 0.8 V. The
+peak magnitude, including overshoot, is limited to 0.8 V.
+Actual potential sharing and electrochemical stability remain unverified.
+
+LaF3: prior notes give a 0.5 mm crystal, 5 nm Cr / 50 nm Au contacts. Actual
+overlap area is unset. The supplied window is -2.1 to +2.1 V. The frequency
+sweep reaches 4.0 Vpp; signed optimized charging has a 2.0 V magnitude ceiling.
+
+LLZO: frequency sweep through 2.0 Vpp; signed optimized charging has a
+1.0 V magnitude ceiling including overshoot. Each pellet face has 50 nm Au. The BioLogic report explicitly listed pellet
+thickness, overlap area and specimen temperature as unmeasured. The supplied MSE
+URL lists Ta-doped Li6.4La3Zr1.4Ta0.6O12 NANO POWDER (SKU PO0106). Its 400-600 nm
+D50 is particle size, not pellet thickness. Nominal density 5500 kg/m^3 and bulk
+conductivity 0.05-0.1 S/m are stored as manufacturer reference only. They are not
+the measured pellet geometry or a calibrated dynamic model.
+
+FILES AND STARTUP
+
+Unzip the entire package; preserve sample_scripts, sample_configs and edl_charge
+beside the shared Python modules. Filenames identify sample, current path and
+readout version. Output naming identifies date, sample and test. Legacy output
+root remains D:\Ferroelectric_BTO_optimization; update it only if your bench
+computer uses a different storage location. Updated commands accept --out.
+
+Initial configurations intentionally contain null parameters, false calibration
+flags and absent qualification thresholds. Fill these from measurements and
+document evidence. They are not runnable fitted models. The scripts reject
+unqualified optimized cases. User-selected standards require physical reconnection;
+the program does not switch electrodes, insert standards or connect a buffer.
+
+All verification performed for delivery was offline/synthetic or mocked VISA.
+Actual generator/oscilloscope behavior, response qualification, sample stability,
+record-memory availability and acquisition throughput remain bench checks.

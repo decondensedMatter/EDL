@@ -1,0 +1,149 @@
+{
+  "sample_name": "LLZO",
+  "model": "stern_pnp",
+  "profile": {
+    "sample_name": "LLZO",
+    "model": "stern_pnp",
+    "window_width_v": 2.4,
+    "margin_v": 0.2,
+    "peak_bound_v": 1.0,
+    "calibration_status": "unverified",
+    "model_parameters": {
+      "temp_K": 298.15,
+      "length_m": null,
+      "area_m2": null,
+      "D_m2_s": null,
+      "concentration_mol_m3": null,
+      "eps_r": null,
+      "stern_capacitance_f_m2": null,
+      "site_concentration_mol_m3": null
+    },
+    "initial_guess_source": null,
+    "electrode_gap_m": null,
+    "starting_powder_formula_nominal": "Li6.4La3Zr1.4Ta0.6O12",
+    "manufacturer_reference": {
+      "url": "https://www.msesupplies.com/products/ampcera-llzo-nano-powder-ta-doped-lithium-lanthanum-zirconate-garnet-500nm-2",
+      "sku": "PO0106",
+      "product_form": "nano powder",
+      "theoretical_density_kg_m3": 5500,
+      "nominal_bulk_conductivity_s_m": [
+        0.05,
+        0.1
+      ],
+      "particle_D50_m": [
+        4e-07,
+        6e-07
+      ],
+      "source_scope": "powder listing; not specimen calibration"
+    },
+    "au_coating_each_face_m": 5e-08,
+    "notes": "Conditioned pellet, 50 nm Au on each face. The BioLogic report explicitly records electrode overlap area, pellet thickness and specimen temperature as unmeasured. temp_K is a nominal room-temperature model assumption.",
+    "chirp_vpp_levels": [
+      0.1,
+      0.2,
+      0.4,
+      0.8,
+      1.6,
+      2.0
+    ],
+    "voltage_window_source": "User-selected optimization peak limit, 2026-11-23: +1.0 V including overshoot. This is 0.2 V below the approximately +1.2 V measured terminal onset. Frequency sweeps remain at a maximum 2.0 Vpp (-1.0 to +1.0 V).",
+    "initial_guess": {}
+  },
+  "hardware": {
+    "use_current_amp": false,
+    "scope_model": "DSA90604A",
+    "scope_serial": "MY50140103",
+    "generator_model": "33511B",
+    "generator_serial": "MY57301577",
+    "scope_bandwidth_hz": 6000000000.0,
+    "scope_max_sample_rate_hz": 20000000000.0,
+    "generator_sample_rate_hz": 160000000.0,
+    "current_channel": "CHAN1",
+    "current_coupling": "DC",
+    "current_termination_ohm": 50.0,
+    "current_gain_a_per_v": 0.02,
+    "current_gain_source": "nominal 50 ohm termination, verify with resistor",
+    "voltage_scale_factor": 1.0,
+    "voltage_scale_source": "illustrative unity until voltage-path calibration",
+    "data_hardware_calibrated": false,
+    "bandwidth_hz": 6000000000.0,
+    "generator_rise_time_s": 1.6826923076923076e-08,
+    "min_charge_time_s": 1.6875e-07,
+    "ch1_input": "DC50",
+    "current_bandwidth_hz": 6000000000.0,
+    "current_sign": 1,
+    "ch1_scale_v_per_div": 0.1,
+    "ch2_scale_v_per_div": 0.2,
+    "voltage_gain": 1.0,
+    "voltage_offset_v": 0.0,
+    "current_offset_v": 0.0,
+    "voltage_measurement_location": "across the two cell electrodes",
+    "first_order_independently_qualified": false,
+    "measured_step_rise_s": null,
+    "current_response_rise_s": null,
+    "current_delay_s": null,
+    "calibration_evidence": null
+  },
+  "model_parameters": {
+    "temp_K": 298.15,
+    "length_m": null,
+    "area_m2": null,
+    "D_m2_s": null,
+    "concentration_mol_m3": null,
+    "eps_r": null,
+    "stern_capacitance_f_m2": null,
+    "site_concentration_mol_m3": null
+  },
+  "initial_guess": {
+    "D_m2_s": 1e-11,
+    "concentration_mol_m3": 1.0,
+    "eps_r": 30.0,
+    "stern_capacitance_f_m2": 0.08
+  },
+  "parameter_bounds": {
+    "D_m2_s": [
+      1e-20,
+      1e-08
+    ],
+    "concentration_mol_m3": [
+      0.0001,
+      100000.0
+    ],
+    "eps_r": [
+      1.0,
+      300.0
+    ],
+    "stern_capacitance_f_m2": [
+      0.0008,
+      8.0
+    ]
+  },
+  "linear_parameters": [],
+  "model_calibrated": false,
+  "fit_report": null,
+  "calibration_id": null,
+  "qualification": {
+    "max_validation_noise_rmse": 3.0,
+    "max_condition_number": 1000000.0,
+    "max_sample_voltage_error_fraction": 0.02
+  },
+  "observed_settling_s": null,
+  "reset_tolerance": 0.01,
+  "max_hold_s": 60.0,
+  "charge_tolerance": 0.01,
+  "voltage_tolerance": 0.005,
+  "max_points": 1000000,
+  "optimization_knots": 7,
+  "starts": 3,
+  "maxiter": 50,
+  "capture_points": 2000,
+  "fit_initialization": {
+    "model": "blocking Stern-PNP",
+    "seed_source": "edl_charge/test_stern_pnp.py: synthetic P",
+    "scope": "Numerical seeds from a synthetic solver test, used for both solids. No specimen material constants or geometry inferred.",
+    "bounds_notes": "Exploratory positive log-space searches around test seeds. Site concentration left unspecified selects the dilute closure unless an independently supported site density is supplied.",
+    "defaults_selected": true,
+    "status": "unverified_initialization",
+    "requires_independent_validation": true
+  }
+}
